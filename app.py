@@ -1,39 +1,44 @@
+﻿
 tasks = []
-
 
 def add_task(task_name):
     tasks.append({
         "name": task_name,
         "completed": False
     })
-    print(f"Đã thêm công việc: '{task_name}'")
-
+    print(f"Da them cong viec: {task_name}")
 
 def list_tasks():
     if not tasks:
-        print("Danh sách công việc đang trống.")
+        print("Danh sach cong viec dang trong.")
         return
 
-    print("\nDanh sách công việc:")
+    print("\nDanh sach cong viec:")
     for index, task in enumerate(tasks, start=1):
         status = "[x]" if task["completed"] else "[ ]"
         print(f"{index}. {status} {task['name']}")
 
-
 def complete_task(task_index):
     if 0 <= task_index < len(tasks):
         tasks[task_index]["completed"] = True
-        print(f"Đã hoàn thành: {tasks[task_index]['name']}")
+        print(f"Da hoan thanh: {tasks[task_index]['name']}")
     else:
-        print("Lỗi: Chỉ số công việc không hợp lệ.")
+        print("Loi: Chi so cong viec khong hop le.")
 
+def delete_task(task_index):
+    if 0 <= task_index < len(tasks):
+        removed_task = tasks.pop(task_index)
+        print(f"Da xoa cong viec: {removed_task['name']}")
+    else:
+        print("Loi: Chi so cong viec khong hop le.")
 
 if __name__ == "__main__":
-    print("Chào mừng đến với ứng dụng To-Do List!")
-
-    add_task("Học bài Git và GitHub")
-    add_task("Làm bài tập thực hành ở nhà")
+    add_task("Hoc Git va GitHub")
+    add_task("Lam bai tap thuc hanh")
 
     list_tasks()
     complete_task(0)
+    list_tasks()
+
+    delete_task(1)
     list_tasks()
